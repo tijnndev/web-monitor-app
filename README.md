@@ -1,4 +1,4 @@
-# Web Monitor (web-monitor-app)
+# Quasar App (web-monitor-app)
 
 A Quasar Project
 
