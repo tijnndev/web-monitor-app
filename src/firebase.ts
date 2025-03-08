@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAK_HUpx3rSwWlo7v95ctofX1n_cKJIcyA",
-  authDomain: "web-monitor-7197c.firebaseapp.com",
-  projectId: "web-monitor-7197c",
-  storageBucket: "web-monitor-7197c.firebasestorage.app",
-  messagingSenderId: "1054778910495",
-  appId: "1:1054778910495:web:b6a9f6b50e48bc878cf22a",
-  measurementId: "G-R5PNZ116DR"
+  apiKey: process.env.API_KEY || "",
+  authDomain: process.env.AUTH_DOMAIN || "",
+  projectId: process.env.PROJECT_ID || "",
+  storageBucket: process.env.STORAGE_BUCKET || "",
+  messagingSenderId: process.env.MESSAGING_SENDER_ID || "",
+  appId: process.env.APP_ID || "",
+  measurementId: process.env.MEASUREMENT_ID || ""
 };
 
 

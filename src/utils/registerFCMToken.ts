@@ -1,7 +1,7 @@
 import { messaging, getToken } from "../firebase";
 import axios from "axios";
 
-const API_URL = "http://localhost:8007/register-token";  // Your API URL
+const API_URL = process.env.API_URL || "";  // Your API URL
 
 export const requestAndRegisterFCMToken = async () => {
   try {
@@ -13,7 +13,7 @@ export const requestAndRegisterFCMToken = async () => {
     const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
     console.log("Service Worker registered:", registration);
 
-    const token = await getToken(messaging, { vapidKey: "BBaOkFQErjmroilOdRohlGq3tLQ9757wL58UoepXvAuWZ7YHt_DOJ79uj-3Ox0GFX-oPWiJpichmhSOj0gDyQDQ" });
+    const token = await getToken(messaging, { vapidKey: process.env.VAPID_KEY || "" });
     if (!token) {
       console.warn("No FCM token received.");
       return;
