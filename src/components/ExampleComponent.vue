@@ -1,37 +1,43 @@
 <template>
-  <div>
-    <p>{{ title }}</p>
-    <ul>
-      <li v-for="todo in todos" :key="todo.id" @click="increment">
-        {{ todo.id }} - {{ todo.content }}
-      </li>
-    </ul>
-    <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
-    <p>Active: {{ active ? 'yes' : 'no' }}</p>
-    <p>Clicks on todos: {{ clickCount }}</p>
-  </div>
+  <q-card class="q-pa-md box-shadow-none">
+    <q-card-section>
+      <div class="text-h6">Monitoring Services</div>
+    </q-card-section>
+    
+    <q-card-section>
+      <q-list bordered separator>
+        <q-item v-for="service in services" :key="service.url" clickable @click="openUrl(service.url)">
+          <q-item-section>
+            <q-item-label>{{ service.name }}</q-item-label>
+            <q-item-label caption class="text-primary">{{ service.url }}</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import type { Todo, Meta } from './models';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import type { Service } from '../utils/types';
 
-interface Props {
-  title: string;
-  todos?: Todo[];
-  meta: Meta;
-  active: boolean;
+const services = ref<Service[]>();
+
+const fetchServices = async () => {
+  try {
+    const response = await axios.get('https://wma.tijnn.dev/services');
+    services.value = response.data;
+  } catch (error) {
+    console.error('Error fetching services:', error);
+  }
 };
 
-const props = withDefaults(defineProps<Props>(), {
-  todos: () => []
+const openUrl = (url: string) => {
+  window.open(url, '_blank');
+};
+
+onMounted(async () => {
+    await fetchServices();
 });
-
-const clickCount = ref(0);
-function increment() {
-  clickCount.value += 1;
-  return clickCount.value;
-}
-
-const todoCount = computed(() => props.todos.length);
 </script>
