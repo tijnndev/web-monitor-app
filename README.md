@@ -30,7 +30,7 @@ This project is a web monitoring mobile app built using **Quasar** and **Vue.js*
 3. Configure the app:
    - Create a file named `.env` in the project folder.
    - Add the following configuration to connect with the backend monitoring system and Firebase for push notifications:
-     ```bash
+     ```
     API_URL="http://localhost:8007"
     API_KEY=""
     AUTH_DOMAIN=""
@@ -95,7 +95,7 @@ The app supports WebSocket integration to listen for real-time updates about web
 ## Example Configuration
 
 **.env**
-```bash
+```
 API_URL="http://localhost:8007"
 API_KEY=""
 AUTH_DOMAIN=""
