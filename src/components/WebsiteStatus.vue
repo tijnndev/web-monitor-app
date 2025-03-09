@@ -14,12 +14,18 @@
         </q-item>
       </q-list>
     </q-card-section>
+
+    <!-- Manually register token button -->
+    <q-card-section>
+      <q-btn label="Register FCM Token" color="primary" @click="registerToken" />
+    </q-card-section>
   </q-card>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { requestAndRegisterFCMToken } from '../utils/registerFCMToken';  // Ensure the function is imported
 import type { Service } from '../utils/types';
 
 const services = ref<Service[]>();
@@ -35,6 +41,11 @@ const fetchServices = async () => {
 
 const openUrl = (url: string) => {
   window.open(url, '_blank');
+};
+
+// Function to manually trigger the FCM token registration
+const registerToken = async () => {
+  await requestAndRegisterFCMToken();
 };
 
 onMounted(async () => {

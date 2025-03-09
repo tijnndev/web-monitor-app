@@ -1,11 +1,11 @@
 <template>
-    <example-component
+    <website-status
       title="Example component"
       active
-    ></example-component>
+    ></website-status>
 </template>
 
 <script setup lang="ts">
-import ExampleComponent from 'components/ExampleComponent.vue';
+import WebsiteStatus from 'components/WebsiteStatus.vue';
 
 </script>

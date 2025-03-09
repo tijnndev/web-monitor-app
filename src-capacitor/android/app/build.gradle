@@ -1,3 +1,9 @@
+
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services' apply false
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -38,14 +44,11 @@ dependencies {
     implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
     implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
     implementation project(':capacitor-android')
+    implementation project(':aparajita-capacitor-logger')
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
-}
-plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services' version '4.4.2' apply false
 }
 
 apply from: 'capacitor.build.gradle'
