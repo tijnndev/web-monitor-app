@@ -10,7 +10,7 @@ This project is a web monitoring mobile app built using **Quasar** and **Vue.js*
 - View the status of monitored websites.
 - Receive push notifications when a website goes offline.
 - Displays real-time website status.
-- Mobile-friendly design optimized for both Android and iOS platforms.
+- Mobile-friendly design optimized for Android.
 
 ---
 
