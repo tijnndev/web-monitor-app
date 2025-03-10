@@ -27,12 +27,14 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { requestAndRegisterFCMToken } from '../utils/registerFCMToken';  // Ensure the function is imported
 import type { Service } from '../utils/types';
+import { getConfig } from 'src/utils/storage';
 
 const services = ref<Service[]>();
 
 const fetchServices = async () => {
   try {
-    const response = await axios.get('https://wma.tijnn.dev/services');
+    const config = await getConfig()
+    const response = await axios.get(config.API_URL + '/services');
     services.value = response.data;
   } catch (error) {
     console.error('Error fetching services:', error);

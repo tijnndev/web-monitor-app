@@ -3,23 +3,40 @@ import axios from "axios";
 import logger from "./logger";
 import { PushNotifications } from "@capacitor/push-notifications";
 import { Capacitor } from "@capacitor/core";
-
-const API_URL = process.env.API_URL || "";
+import { getConfig } from "./storage"
 
 export const requestAndRegisterFCMToken = async () => {
   try {
-    logger.info("Using native platform for FCM token registration.");
-    const permission = await PushNotifications.requestPermissions();
-    if (permission.receive !== "granted") {
-      logger.warn("Push notifications permission denied on native platform.");
-      return;
+    const config = await getConfig();
+
+
+    const API_URL = config.API_URL || ""
+    
+    if (Capacitor.getPlatform() !== "web") {
+      logger.info("Using native platform for FCM token registration.");
+      const permission = await PushNotifications.requestPermissions();
+      if (permission.receive !== "granted") {
+        logger.warn("Push notifications permission denied on native platform.");
+        return;
+      }
+    } else {
+      logger.info("Using web platform for FCM token registration.");
+      const permission = await Notification.requestPermission();
+      if (permission !== "granted") {
+        logger.warn("Push notifications permission denied on web platform.");
+        return;
+      }
     }
     
     logger.info("Fetching token.");
     let token;
     if (Capacitor.getPlatform() === "web") {
       logger.info("Fetching token for web platform.");
-      token = await getToken(messaging, { vapidKey: process.env.VAPID_KEY || "" });
+      if (messaging) {
+        token = await getToken(messaging, { vapidKey: config.VAPID_KEY || "" });
+      } else {
+        logger.warn("Messaging is undefined.");
+      }
     } else {
       logger.info("Fetching token for native platform.");
       token = await new Promise<string>((resolve, reject) => {
