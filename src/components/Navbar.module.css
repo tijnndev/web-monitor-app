@@ -1,0 +1,139 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  min-height: 50px;
+  background-color: #009280;
+  padding: 15px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2), 0 0px 10px rgba(0, 0, 0, 0.24);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 21px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.version {
+  font-size: 0.9rem;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+}
+
+.navlist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.navItems {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.settingsItem {
+  margin-top: auto;
+}
+
+.navlist li a,
+.navlist li {
+  display: block;
+  width: 100%;
+}
+
+.navItems {
+  padding-left: 0;
+}
+
+.navItems li {
+  padding: 0;
+  margin-bottom: 0
+}
+
+.navItems li a {
+  margin-left: 1rem;
+}
+
+.navlink {
+  color: #fff !important;
+  text-decoration: none !important;
+  margin: auto 10px;
+  transition: all .3s;
+}
+
+.navlink:hover {
+  color: #39ff14 !important;
+}
+
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menuToggle div {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+}
+
+.navItems {
+   flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding-top: env(safe-area-inset-top);
+  }
+  .menuToggle {
+    display: flex;
+  }
+
+  .navlist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #222;
+    padding: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 1000;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .navlistOpen {
+    transform: translateX(0);
+  }
+
+  .navItems {
+     flex-direction: column;
+  }
+
+  .navItems li a {
+    
+    padding: 1rem 0.2rem;
+  }
+}
