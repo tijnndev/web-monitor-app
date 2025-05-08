@@ -11,15 +11,15 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
+    "buildapp": "set JAVA_HOME=C:\\Program Files\\Java\\jdk-17 && quasar build -m capacitor -T android",
     "build": "quasar build",
     "postinstall": "quasar prepare"
   },
   "dependencies": {
     "@aparajita/capacitor-logger": "^5.0.0",
-    "@capacitor/core": "^7.0.1",
+    "@capacitor/core": "^6.0.0",
     "@capacitor/local-notifications": "^6.0.0",
     "@capacitor/push-notifications": "^6.0.0",
-    "@capacitor/storage": "^1.2.5",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.8.2",
     "firebase": "^11.4.0",

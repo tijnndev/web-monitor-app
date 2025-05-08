@@ -1,26 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
-import { getConfig } from "./utils/storage";
 import type { Messaging } from "firebase/messaging";
 
 let messaging: Messaging | undefined;
 
-async function initializeFirebase() {
-  const config = await getConfig();
-
-  if (!config?.API_KEY || !config?.AUTH_DOMAIN || !config?.PROJECT_ID || !config?.STORAGE_BUCKET || !config?.MESSAGING_SENDER_ID || !config?.APP_ID || !config?.MEASUREMENT_ID) {
-    console.warn("Firebase config not found in storage. Skipping Firebase initialization.");
-    return;
-  }
-
+function initializeFirebase() {
   const firebaseConfig = {
-    apiKey: config.API_KEY,
-    authDomain: config.AUTH_DOMAIN,
-    projectId: config.PROJECT_ID,
-    storageBucket: config.STORAGE_BUCKET,
-    messagingSenderId: config.MESSAGING_SENDER_ID,
-    appId: config.APP_ID,
-    measurementId: config.MEASUREMENT_ID
+    apiKey: process.env.VUE_API_KEY || "",
+    authDomain: process.env.VUE_AUTH_DOMAIN || "",
+    projectId: process.env.VUE_PROJECT_ID || "",
+    storageBucket: process.env.VUE_STORAGE_BUCKET || "",
+    messagingSenderId: process.env.VUE_MESSAGING_SENDER_ID || "",
+    appId: process.env.VUE_APP_ID || "",
+    measurementId: process.env.VUE_MEASUREMENT_ID || ""
   };
 
   const app = initializeApp(firebaseConfig);

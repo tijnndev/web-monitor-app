@@ -1,5 +1,14 @@
 {
   "appId": "nl.tijnndev.webmonitor.app",
   "appName": "Web Monitor",
-  "webDir": "www"
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "path": "android",
+    "buildOptions": {
+      "compileSdkVersion": 33,
+      "minSdkVersion": 21,
+      "targetSdkVersion": 33
+    }
+  }
 }

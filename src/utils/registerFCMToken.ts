@@ -3,14 +3,12 @@ import axios from "axios";
 import logger from "./logger";
 import { PushNotifications } from "@capacitor/push-notifications";
 import { Capacitor } from "@capacitor/core";
-import { getConfig } from "./storage"
 
 export const requestAndRegisterFCMToken = async () => {
   try {
-    const config = await getConfig();
 
 
-    const API_URL = config.API_URL || ""
+    const API_URL = process.env.VUE_FIREBASE_API_URL || ""
     
     if (Capacitor.getPlatform() !== "web") {
       logger.info("Using native platform for FCM token registration.");
@@ -33,7 +31,9 @@ export const requestAndRegisterFCMToken = async () => {
     if (Capacitor.getPlatform() === "web") {
       logger.info("Fetching token for web platform.");
       if (messaging) {
-        token = await getToken(messaging, { vapidKey: config.VAPID_KEY || "" });
+        console.log(messaging)
+        token = await getToken(messaging, { vapidKey: process.env.VUE_VAPID_KEY || "" });
+        console.log("Token: ", token);
       } else {
         logger.warn("Messaging is undefined.");
       }
@@ -49,6 +49,7 @@ export const requestAndRegisterFCMToken = async () => {
           reject(error);
         });
       });
+      
     }
     
     logger.info(`FCM token: ${token}`);
@@ -59,7 +60,12 @@ export const requestAndRegisterFCMToken = async () => {
     logger.info("Fetched token.");
     
     logger.info("Posting token.");
-    await axios.post(API_URL + "/register-token", { token });
+    await axios.post(API_URL + "/tokens", { 
+      token: token,
+      serviceId: process.env.VUE_SERVICE_ID || "",
+      type: Capacitor.getPlatform() === 'web' ? 'web' : 'android'
+    });
+
     logger.info("FCM token registered successfully!");
   } catch (error) {
     console.error("Error registering FCM token:", error);

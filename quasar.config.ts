@@ -78,14 +78,15 @@ export default defineConfig((/* ctx */) => {
       ],
       env: {
         // Inject your environment variables into the app's code
-        API_URL: process.env.API_URL,
-        API_KEY: process.env.API_KEY,
-        AUTH_DOMAIN: process.env.AUTH_DOMAIN,
-        PROJECT_ID: process.env.PROJECT_ID,
-        STORAGE_BUCKET: process.env.STORAGE_BUCKET,
-        MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
-        APP_ID: process.env.APP_ID,
-        VAPID_KEY: process.env.VAPID_KEY,
+        VUE_API_URL: process.env.VUE_API_URL,
+        VUE_API_KEY: process.env.VUE_API_KEY,
+        VUE_AUTH_DOMAIN: process.env.VUE_AUTH_DOMAIN,
+        VUE_PROJECT_ID: process.env.VUE_PROJECT_ID,
+        VUE_STORAGE_BUCKET: process.env.VUE_STORAGE_BUCKET,
+        VUE_MESSAGING_SENDER_ID: process.env.VUE_MESSAGING_SENDER_ID,
+        VUE_APP_ID: process.env.VUE_APP_ID,
+        VUE_VAPID_KEY: process.env.VUE_VAPID_KEY,
+        VUE_SERVICE_ID: process.env.VUE_SERVICE_ID,
       }
     },
 

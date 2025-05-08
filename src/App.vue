@@ -8,7 +8,7 @@ import { requestAndRegisterFCMToken } from "./utils/registerFCMToken";
 import { initializeFirebase } from "./firebase";
 
 onMounted(async () => {
-  await initializeFirebase()
+  initializeFirebase()
   await requestAndRegisterFCMToken();
 });
 </script>
