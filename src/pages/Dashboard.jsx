@@ -11,7 +11,11 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchServices() {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + '/services')
+        const response = await axios.get(import.meta.env.VITE_API_URL + '/services', {
+          headers: {
+            'x-api-key': import.meta.env.VITE_API_SECRET
+          }
+        });
         setServices(response.data)
       } catch (error) {
         console.error('Error fetching services:', error)
